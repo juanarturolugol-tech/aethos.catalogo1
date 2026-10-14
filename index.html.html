@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHOS - Catálogo Deportivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000000',
+                        white: '#FFFFFF',
+                        darkgray: '#0a0a0a',
+                        cardgray: '#121212',
+                        bordergray: '#262626'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Watermark background using the user's uploaded logo */
+        .bg-watermark {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('IMG_3549_12c75b.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 50% auto;
+            opacity: 0.035;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .bg-watermark {
+                background-size: 85% auto;
+            }
+        }
+
+        /* Smooth card hover and border lighting effects */
+        .product-card {
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555555;
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen relative selection:bg-white selection:text-black">
+
+    <div class="bg-watermark"></div>
+
+    <header class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-bordergray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <img src="https://i.postimg.cc/13qcnRB0/59d50f54-fd93-42c1-92b2-cd9c01b8a197.jpg" alt="Aethos Logo" class="w-10 h-10 object-contain rounded-full border border-white/20 p-1">
+                <span class="text-2xl font-black tracking-widest uppercase text-white">AETHOS</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://wa.me/584244741823?text=Hola,%20estoy%20interesado%20en%20los%20productos%20de%20Aethos" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-2.5 rounded-full border border-white text-white text-sm font-semibold tracking-wider hover:bg-white hover:text-black transition-all duration-300">
+                    WHATSAPP DIRECTO
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <section class="text-center mb-16">
+            <h1 class="text-4xl sm:text-6xl font-black uppercase tracking-wider mb-4">
+                CATÁLOGO <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-600">DEPORTIVO</span>
+            </h1>
+            <p class="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto tracking-wide uppercase">
+                Alto rendimiento y elegancia. Toca cualquier producto para contactar por WhatsApp.
+            </p>
+        </section>
+
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
+            <!-- Products injected dynamically via JavaScript -->
+        </div>
+    </main>
+
+    <footer class="relative z-10 border-t border-bordergray mt-24 py-12 bg-black text-center text-zinc-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="font-bold tracking-wider uppercase text-white mb-2">AETHOS SPORTWEAR</p>
+            <p>Todos los derechos reservados © 2026. Atención directa: +58 424-2277396</p>
+        </div>
+    </footer>
+
+    <script>
+        // Array containing the exact 22 ImgBB links provided by the user with assigned professional sports product names
+        const products = [
+            { id: 1, name: "Kits de medias elite", img: "https://i.ibb.co/Z6WRBpWs/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=800&auto=format&fit=crop" },
+            { id: 2, name: "Kits de medias pro", img: "https://i.ibb.co/MyyKz9KD/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" },
+            { id: 3, name: "Kit de medias basico", img: "https://i.ibb.co/Gv8Zh8J2/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=800&auto=format&fit=crop" },
+            { id: 4, name: "cintas elasticas", img: "https://i.ibb.co/QFNNxRcs/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=800&auto=format&fit=crop" },
+            { id: 5, name: "Chalecos de entrenamientos", img: "https://i.ibb.co/sdXTDnQJ/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800&auto=format&fit=crop" },
+            { id: 6, name: "Set de minas redondas", img: "https://i.ibb.co/tpZ8v7Ny/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=800&auto=format&fit=crop" },
+            { id: 7, name: "Balon de voleibal molten", img: "https://i.ibb.co/7J18qxfq/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1583473848882-f9d5bc7cd2ab?q=80&w=800&auto=format&fit=crop" },
+            { id: 8, name: "Balon eurocopa woman edition", img: "https://i.ibb.co/CrNdx0k/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop" },
+            { id: 9, name: "Guantes de arquero jogger", img: "https://i.ibb.co/fV722Sff/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" },
+            { id: 10, name: "Media antideslizante azul oscuro", img: "https://i.ibb.co/Z3bXyGT/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" },
+            { id: 11, name: "Media antideslizante azul", img: "https://i.ibb.co/q3VJSHRR/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?q=80&w=800&auto=format&fit=crop" },
+            { id: 12, name: "Paracaidas de entrenamiento", img: "https://i.ibb.co/9mPQqbKv/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=800&auto=format&fit=crop" },
+            { id: 13, name: "Kit de entrenamineto", img: "https://i.ibb.co/mCDJjRgB/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=800&auto=format&fit=crop" },
+            { id: 14, name: "Balon futsal molten", img: "https://i.ibb.co/zhNHSCy7/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=800&auto=format&fit=crop" },
+            { id: 15, name: "Balon trionda woman edition", img: "https://i.ibb.co/tTqc5vH5/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=800&auto=format&fit=crop" },
+            { id: 16, name: "Minas triangulares", img: "https://i.ibb.co/KcgP8RN0/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" },
+            { id: 17, name: "Set de medias anti deslizantes", img: "https://i.ibb.co/jP44Js8R/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop" },
+            { id: 18, name: "Balon trionda", img: "https://i.ibb.co/gFTfBnYN/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800&auto=format&fit=crop" },
+            { id: 19, name: "Balon champions league", img: "https://i.ibb.co/sdxpp2tt/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=800&auto=format&fit=crop" },
+            { id: 20, name: "Balon adidas munich champions (Straps)", img: "https://i.ibb.co/xS3jC5zp/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" },
+            { id: 22, name: "Balon CR7", img: "https://i.ibb.co/B525rWmS/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop" },
+
+{ id: 23, name: "Balon trionda edicion USA", img: "https://i.ibb.co/G4htnYL0/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=800&auto=format&fit=crop" },
+            { id: 24, name: "Balon trionda edicion canada", img: "https://i.ibb.co/mFb9V2Jw/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1583473848882-f9d5bc7cd2ab?q=80&w=800&auto=format&fit=crop" },
+            { id: 25, name:  "Silbatos", img: "https://i.ibb.co/VpDRY4nD/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1614632537190-23e4146777db?q=80&w=800&auto=format&fit=crop" },
+            { id: 26, name: "Mayas de aro de basquet", img: "https://i.ibb.co/jk44W33k/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=800&auto=format&fit=crop" },
+            { id: 27, name: "Muñequera de boxeo", img: "https://i.ibb.co/fz6WvpP0/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=800&auto=format&fit=crop" },
+            { id: 28, name: "Guantes de boxeo", img: "https://i.ibb.co/bjYH6W6Z/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1526676037777-05a232554f77?q=80&w=800&auto=format&fit=crop" },
+            { id: 29, name: "Bucales de boxeo", img: "https://i.ibb.co/66BXzSD/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?q=80&w=800&auto=format&fit=crop" },
+            { id: 30, name: "Balón bote alto N5", img: "https://i.ibb.co/G4z45hfk/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=800&auto=format&fit=crop" },
+            { id: 31, name: "Balon N5 nike 2026", img: "https://i.ibb.co/RkZDwpbz/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?q=80&w=800&auto=format&fit=crop" },
+            { id: 32, name: "Balon N5 nike 2026", img: "https://i.ibb.co/2Y8kZb1J/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=800&auto=format&fit=crop" },
+            { id: 33, name: "Balon futsal molten ventaggio verde", img: "https://i.ibb.co/gMgwJp2r/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=800&auto=format&fit=crop" },
+            { id: 34, name: "Balon futsal molten ventaggio blanco", img: "https://i.ibb.co/jv0tQFmM/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?q=80&w=800&auto=format&fit=crop" },
+            { id: 35, name: "Balon futsal macgregor", img: "https://i.ibb.co/HLX6b7sw/placeholder.jpg", fallbackImg: "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?q=80&w=800&auto=format&fit=crop" },
+
+                                              ];
+
+        function renderCatalog() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            products.forEach((prod) => {
+                const whatsappNumber = "584242277396";
+                // Exact pre-filled URL format requested by user
+                const message = encodeURIComponent(`Hola, estoy interesado en el producto ${prod.name}`);
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+                const card = document.createElement('div');
+                card.className = "product-card rounded-2xl p-4 flex flex-col justify-between cursor-pointer group relative overflow-hidden";
+                card.onclick = () => {
+                    window.open(whatsappUrl, '_blank');
+                };
+
+                card.innerHTML = `
+                    <div class="relative w-full h-64 sm:h-72 rounded-xl overflow-hidden bg-black mb-4 border border-zinc-800">
+                        <img src="${prod.img}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.src='${prod.fallbackImg}'">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300"></div>
+                        <span class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-white text-xs font-bold px-2.5 py-1 rounded-full border border-white/20">
+                            PEDIR
+                        </span>
+                    </div>
+                    <div class="text-center pb-2">
+                        <h3 class="text-white font-bold text-base sm:text-lg tracking-wide uppercase group-hover:text-zinc-200 transition-colors">
+                            ${prod.name}
+                        </h3>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', renderCatalog);
+    </script>
+</body>
+</html>
